@@ -1,6 +1,10 @@
+# __init__.py
+# Chris McKay
+# v1.0 2021-11-14
+# entry point for the http trigger, parsing the path to the source image and 
+# starting the object detection processs.
+
 import logging
-import json
-from os import stat
 
 import azure.functions as func
 

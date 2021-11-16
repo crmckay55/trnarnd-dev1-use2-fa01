@@ -1,3 +1,10 @@
+# inference.py
+# Chris McKay
+# v1.0 2021-11-14
+# source: https://debuggercafe.com/custom-object-detection-using-pytorch-faster-rcnn/
+# adjusted to fit azure function app constraints (e.g. cpu only) and a few other tweaks
+# apecific to our needs such as logging, object count, and adjustment of font on overlay etc
+
 import numpy as np
 import cv2
 import torch
@@ -15,7 +22,7 @@ def detect_objects(image, model_path):
     
 
     # load the model and the trained weights
-    model = create_model(num_classes=config.NUM_CLASSES).to(device)
+    model = create_model(num_classes=config.CLASSES).to(device)
     logging.info(inspect.stack()[0].function + f': created model, now loading {model_path}')
 
     try:

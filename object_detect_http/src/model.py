@@ -1,3 +1,9 @@
+
+# model.py
+# Chris McKay
+# v1.0 2021-11-14
+# source: https://debuggercafe.com/custom-object-detection-using-pytorch-faster-rcnn/
+
 import torchvision
 from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
 
