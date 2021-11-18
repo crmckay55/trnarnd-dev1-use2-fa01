@@ -4,13 +4,12 @@
 # Loads relevant envrionment variables from function app environment
 
 import os
-import torch
+
 
 SOURCE_CONNECTION = os.getenv('SOURCE_CONNECTION_STRING')
 SOURCE_CONTAINER = os.getenv('SOURCE_CONTAINER')
 MODEL_LOCATION = os.getenv('MODEL_LOCATION')
 MODEL_NAME = os.getenv('MODEL_NAME')
 COMPUTATION_DEVICE = 'cpu' # using cpu for azure function app for now instead of 'cuda'
-DEVICE = torch.device(COMPUTATION_DEVICE)
 
-CLASSES = os.getenv('MODEL_CLASSES') # TODO: make this envvar?
+CLASSES = os.getenv('MODEL_CLASSES')
