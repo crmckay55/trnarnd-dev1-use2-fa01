@@ -12,4 +12,4 @@ MODEL_LOCATION = os.getenv('MODEL_LOCATION')
 MODEL_NAME = os.getenv('MODEL_NAME')
 COMPUTATION_DEVICE = 'cpu' # using cpu for azure function app for now instead of 'cuda'
 
-CLASSES = os.getenv('MODEL_CLASSES')
+CLASSES = int(os.getenv('MODEL_CLASSES'))
