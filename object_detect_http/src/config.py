@@ -12,4 +12,5 @@ MODEL_LOCATION = os.getenv('MODEL_LOCATION')
 MODEL_NAME = os.getenv('MODEL_NAME')
 COMPUTATION_DEVICE = 'cpu' # using cpu for azure function app for now instead of 'cuda'
 
-CLASSES = int(os.getenv('MODEL_CLASSES'))
+NUMBER_OF_CLASSES = int(os.getenv('MODEL_NUMBER_CLASSES')) # int(os.getenv('MODEL_CLASSES'))
+CLASSES =  os.getenv('MODEL_CLASS_NAMES').split(',') # ['background', 'valve']

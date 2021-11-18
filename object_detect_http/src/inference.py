@@ -22,7 +22,7 @@ def detect_objects(image, model_path):
     
 
     # load the model and the trained weights
-    model = create_model(num_classes=config.CLASSES).to(device)
+    model = create_model(num_classes=config.NUMBER_OF_CLASSES).to(device)
     logging.info(inspect.stack()[0].function + f': created model, now loading {model_path}')
 
     try:
@@ -62,14 +62,24 @@ def detect_objects(image, model_path):
         outputs = [{k: v.to('cpu') for k, v in t.items()} for t in outputs]
         logging.info(inspect.stack()[0].function + f': finished evaluating and moving to drawing boxes')
 
+        x = len(outputs[0]['boxes'])
+        logging.info(inspect.stack()[0].function + f': number of outputs is {x}')
+        
         # carry further only if there are detected boxes
         if len(outputs[0]['boxes']) != 0:
+
+
             boxes = outputs[0]['boxes'].data.numpy()
             scores = outputs[0]['scores'].data.numpy()
+            logging.info(inspect.stack()[0].function + f': loaded boxes and scores')
+
 
             # filter out boxes according to `detection_threshold`
             boxes = boxes[scores >= detection_threshold].astype(np.int32)
             draw_boxes = boxes.copy()
+
+            x = len(outputs[0]['labels'])
+            logging.info(inspect.stack()[0].function + f': number of labels is {x}')
 
             # get all the predicited class names
             pred_classes = [config.CLASSES[i] for i in outputs[0]['labels'].cpu().numpy()]      # INFO: left as .cpu
